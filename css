@@ -1,0 +1,37 @@
+#moodTracker {
+  background-color: #f5f5dc; /* cream color */
+  color: #3e3e3c; /* dark brown */
+  font-family: 'Georgia', serif;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 300px;
+}
+
+#moodOptions button {
+  background-color: #8b5a2b; /* muted gold */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#moodOptions button:hover {
+  background-color: #9c6e3b; /* slightly lighter gold */
+}
+
+#moodHistory {
+  margin-top: 20px;
+}
+
+#moodHistory h3 {
+  font-family: 'Arial', sans-serif;
+  color: #3e3e3c; /* dark brown */
+}
+
+#moodHistory p {
+  font-size: 0.9em;
+}
