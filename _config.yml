@@ -1,4 +1,25 @@
-source: docs
-include:
-  - index.html
-  - styles.css
+# Configuration for Mood Tracker Widget
+server:
+  port: 8080
+  baseUrl: 'http://localhost:8080'
+
+moodTracker:
+  storageType: 'localStorage' # Options: 'localStorage', 'database'
+  databaseUrl: 'http://mydatabase.com/api' # Only needed if using 'database' as storageType
+
+design:
+  primaryColor: '#8b5a2b'
+  secondaryColor: '#f5f5dc'
+  accentColor: '#9c6e3b'
+  fontFamily: 'Georgia, serif'
+
+features:
+  enableHistory: true
+  maxHistoryEntries: 30
+
+security:
+  enableCors: true
+  corsOrigins:
+    - 'http://myallowedorigin.com'
+
+# Add other configurations here as needed
