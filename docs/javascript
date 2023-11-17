@@ -2,46 +2,48 @@ document.addEventListener('DOMContentLoaded', function() {
     const moodDate = document.getElementById('moodDate');
     const moodButtons = document.querySelectorAll('.mood-button');
 
-    // Function to clear the active state from all mood buttons
-    function clearActiveState() {
-        moodButtons.forEach(button => button.classList.remove('active'));
-    }
-
-    // Function to set a mood button as active
-    function setActiveButton(mood) {
-        clearActiveState();
-        const activeButton = Array.from(moodButtons).find(button => button.dataset.mood === mood);
-        if (activeButton) {
-            activeButton.classList.add('active');
-        }
-    }
-
-    // Event listener for mood button click
-    moodButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const mood = this.dataset.mood;
-            const date = moodDate.value;
-            if (!date) {
-                alert("Please select a date.");
-                return;
+    // Update the active state on the buttons
+    function updateActiveState(selectedMood) {
+        moodButtons.forEach(button => {
+            if (button.dataset.mood === selectedMood) {
+                button.classList.add('active');
+            } else {
+                button.classList.remove('active');
             }
-            localStorage.setItem(date, mood); // Save mood in localStorage
-            setActiveButton(mood); // Visually mark the button as active
         });
-    });
+    }
 
-    // Event listener for date change
+    // Store the mood for the selected date
+    function storeMood(date, mood) {
+        localStorage.setItem(date, mood);
+    }
+
+    // Retrieve the mood for the selected date
+    function retrieveMood(date) {
+        return localStorage.getItem(date);
+    }
+
+    // Record the mood and store it
+    window.recordMood = function(mood) {
+        const date = moodDate.value;
+        if (date) {
+            storeMood(date, mood);
+            updateActiveState(mood);
+        } else {
+            alert("Please select a date.");
+        }
+    };
+
+    // Set mood buttons to show the stored mood when a date is picked
     moodDate.addEventListener('change', function() {
         const selectedDate = this.value;
-        const savedMood = localStorage.getItem(selectedDate);
-        if (savedMood) {
-            setActiveButton(savedMood); // Set the saved mood as active
-        } else {
-            clearActiveState(); // Clear active state if no mood saved for the date
-        }
+        const mood = retrieveMood(selectedDate);
+        updateActiveState(mood);
     });
 
-    // Initialize with today's date
+    // Set the current date and update the mood on page load
     moodDate.valueAsDate = new Date();
-    moodDate.dispatchEvent(new Event('change'));
+    const today = moodDate.value;
+    const todayMood = retrieveMood(today);
+    updateActiveState(todayMood);
 });
