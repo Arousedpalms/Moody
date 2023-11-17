@@ -5,26 +5,81 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mood Tracker</title>
 <style>
-  /* Add the CSS styles here */
+  body {
+    font-family: 'Arial', sans-serif;
+    padding: 10px;
+    background-color: #f7f7f7; /* light grey background */
+  }
+
+  #moodTracker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  #moodDate {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+
+  .mood-button {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .mood-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .happy {
+    background-color: #ffeb3b;
+    color: #3c3c3b;
+  }
+
+  .sad {
+    background-color: #2196f3;
+    color: #fff;
+  }
+
+  .excited {
+    background-color: #ff9800;
+    color: #3c3c3b;
+  }
+
+  .anxious {
+    background-color: #f44336;
+    color: #fff;
+  }
+
 </style>
-<script>
-  // Add the JavaScript here
-</script>
 </head>
 <body>
+
 <div id="moodTracker">
     <input type="date" id="moodDate" name="moodDate">
-    <div id="moodOptions">
-        <button onclick="recordMood('Happy')">😊 Happy</button>
-        <button onclick="recordMood('Sad')">😔 Sad</button>
-        <button onclick="recordMood('Excited')">😃 Excited</button>
-        <button onclick="recordMood('Anxious')">😰 Anxious</button>
-        <!-- Add more mood buttons as needed -->
-    </div>
-    <div id="moodHistory"></div>
+    <button class="mood-button happy" onclick="recordMood('Happy')">😊 Happy</button>
+    <button class="mood-button sad" onclick="recordMood('Sad')">😔 Sad</button>
+    <button class="mood-button excited" onclick="recordMood('Excited')">😃 Excited</button>
+    <button class="mood-button anxious" onclick="recordMood('Anxious')">😰 Anxious</button>
 </div>
+
 <script>
-  // Add the JavaScript code provided earlier here
+  // JavaScript functionality here
 </script>
+
 </body>
 </html>
