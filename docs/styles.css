@@ -1,116 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mood Tracker</title>
-<style>
-  body {
+body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #eaeaea; /* Soft background color */
-  }
+    background-color: #eaeaea; /* Neutral background color */
+}
 
-  #moodTracker {
+#moodTracker {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #ffffff; /* White background for the tracker */
+    background: #ffffff; /* White background for the container */
     padding: 20px;
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-  }
+    border-radius: 10px; /* Rounded corners for the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 650px; /* Maximum width of the tracker */
+    margin: auto; /* Centering the tracker */
+}
 
-  #moodDate {
-    border: 2px solid #cccccc; /* Slightly darker border for the input */
-    border-radius: 5px;
-    padding: 5px 10px;
+#moodDate {
+    border: 2px solid #cccccc; /* Subtle border for the input */
+    border-radius: 5px; /* Rounded corners for the input */
+    padding: 10px 15px;
     font-size: 16px;
-  }
+    background-color: #f7f7f7; /* Slightly off-white background for the input */
+    color: #333; /* Dark text for contrast */
+}
 
-  .mood-button {
+.mood-button {
     border: none;
-    border-radius: 5px;
+    border-radius: 20px; /* Fully rounded corners for the buttons */
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: #fff; /* White text for all buttons */
-  }
+    justify-content: center;
+    gap: 5px; /* Space between icon and text */
+    text-transform: capitalize; /* Capitalizing button text */
+    font-weight: bold; /* Making the text bold */
+}
 
-  /* Button color coding based on mood */
-  .happy { background-color: #ffdd67; }
-  .sad { background-color: #78c0e0; }
-  .excited { background-color: #ffd86f; }
-  .anxious { background-color: #fa8c8c; }
+/* Specific button color coding based on mood */
+.happy { background-color: #ffd54f; color: #6d4c41; }
+.sad { background-color: #64b5f6; color: #283593; }
+.excited { background-color: #ba68c8; color: #4a148c; }
+.anxious { background-color: #e57373; color: #b71c1c; }
 
-  .mood-button.selected {
-    transform: scale(1.1);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  }
+.mood-button.selected {
+    transform: scale(1.1); /* Enlarge selected button */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for selected button */
+}
 
-  .mood-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-</style>
-</head>
-<body>
+.mood-button:hover {
+    transform: scale(1.05); /* Slight enlargement on hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow on hover */
+}
 
-<div id="moodTracker">
-    <input type="date" id="moodDate" name="moodDate">
-    <button class="mood-button happy" data-mood="Happy" onclick="recordMood('Happy')">😊 Happy</button>
-    <button class="mood-button sad" data-mood="Sad" onclick="recordMood('Sad')">😔 Sad</button>
-    <button class="mood-button excited" data-mood="Excited" onclick="recordMood('Excited')">😃 Excited</button>
-    <button class="mood-button anxious" data-mood="Anxious" onclick="recordMood('Anxious')">😰 Anxious</button>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const moodDate = document.getElementById('moodDate');
-    const moodButtons = document.querySelectorAll('.mood-button');
-
-    // Function to update the selected mood button
-    function updateSelectedMoodButton(selectedMood) {
-        moodButtons.forEach(button => {
-            if (button.dataset.mood === selectedMood) {
-                button.classList.add('selected'); // Highlight the selected mood button
-            } else {
-                button.classList.remove('selected'); // Remove highlight from other buttons
-            }
-        });
+/* Media query for responsiveness on smaller screens */
+@media (max-width: 700px) {
+    #moodTracker {
+        flex-direction: column; /* Stack elements vertically on small screens */
     }
 
-    // Function to record the mood
-    window.recordMood = function(mood) {
-        let date = moodDate.value;
-        if (!date) {
-            alert("Please select a date.");
-            return;
-        }
+    .mood-button {
+        width: 100%; /* Full width buttons on small screens */
+        margin-bottom: 10px; /* Space between buttons when stacked */
+    }
 
-        // Store the mood using localStorage
-        localStorage.setItem(date, mood);
+    #moodDate {
+        margin-bottom: 10px; /* Space between date input and buttons when stacked */
+    }
+}
 
-        // Highlight the selected mood button
-        updateSelectedMoodButton(mood);
-    };
-
-    // Event listener to handle date changes
-    moodDate.addEventListener('change', function() {
-        const selectedDate = this.value;
-        const savedMood = localStorage.getItem(selectedDate);
-
-        // Update the selected mood button based on saved mood
-        updateSelectedMoodButton(savedMood);
-    });
-});
-</script>
-
-</body>
-</html>
 
