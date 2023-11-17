@@ -2,75 +2,73 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #eaeaea; /* Neutral background color */
+    background-color: #f4f4f4; /* A light grey background */
 }
 
 #moodTracker {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #ffffff; /* White background for the container */
+    background: #ffffff; /* White background for the tracker container */
     padding: 20px;
     border-radius: 10px; /* Rounded corners for the container */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     max-width: 650px; /* Maximum width of the tracker */
-    margin: auto; /* Centering the tracker */
+    margin: auto; /* Centering the tracker on the page */
 }
 
 #moodDate {
-    border: 2px solid #cccccc; /* Subtle border for the input */
+    border: 2px solid #dddddd; /* A light grey border for the input */
     border-radius: 5px; /* Rounded corners for the input */
     padding: 10px 15px;
     font-size: 16px;
-    background-color: #f7f7f7; /* Slightly off-white background for the input */
-    color: #333; /* Dark text for contrast */
+    background-color: #f9f9f9; /* A very light grey background for the input */
+    color: #333; /* Darker text color for contrast */
 }
 
 .mood-button {
-    border: none;
+    border: 2px solid transparent; /* Transparent border for a clean look */
     border-radius: 20px; /* Fully rounded corners for the buttons */
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: all 0.3s ease; /* Smooth transition for interactions */
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px; /* Space between icon and text */
+    color: #fff; /* White text color for all buttons */
     text-transform: capitalize; /* Capitalizing button text */
-    font-weight: bold; /* Making the text bold */
 }
 
-/* Specific button color coding based on mood */
-.happy { background-color: #ffd54f; color: #6d4c41; }
-.sad { background-color: #64b5f6; color: #283593; }
-.excited { background-color: #ba68c8; color: #4a148c; }
-.anxious { background-color: #e57373; color: #b71c1c; }
+/* Specific color styles for each mood */
+.happy { background-color: #ffd54f; }
+.sad { background-color: #64b5f6; }
+.excited { background-color: #ba68c8; }
+.anxious { background-color: #e57373; }
 
-.mood-button.selected {
-    transform: scale(1.1); /* Enlarge selected button */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for selected button */
-}
-
+.mood-button.active,
 .mood-button:hover {
-    transform: scale(1.05); /* Slight enlargement on hover */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow on hover */
+    border-color: #aaa; /* Highlight border on active/hover state */
+    transform: scale(1.05); /* Slightly enlarge buttons on hover/active */
 }
 
-/* Media query for responsiveness on smaller screens */
+.mood-button.active {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow for active state */
+}
+
+/* Responsive design for smaller screens */
 @media (max-width: 700px) {
     #moodTracker {
-        flex-direction: column; /* Stack elements vertically on small screens */
+        flex-direction: column; /* Stack elements vertically on smaller screens */
     }
 
     .mood-button {
-        width: 100%; /* Full width buttons on small screens */
-        margin-bottom: 10px; /* Space between buttons when stacked */
+        width: 100%; /* Full width buttons for smaller screens */
+        margin-bottom: 10px; /* Space between stacked buttons */
     }
 
     #moodDate {
-        margin-bottom: 10px; /* Space between date input and buttons when stacked */
+        margin-bottom: 10px; /* Space between date input and stacked buttons */
     }
 }
-
-
