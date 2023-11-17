@@ -1,37 +1,46 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #eaeaea; /* Soft background color */
+}
+
 #moodTracker {
-  background-color: #f5f5dc; /* cream color */
-  color: #3e3e3c; /* dark brown */
-  font-family: 'Georgia', serif;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  max-width: 300px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff; /* White background for the tracker */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for depth */
 }
 
-#moodOptions button {
-  background-color: #8b5a2b; /* muted gold */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+#moodDate {
+    border: 2px solid #cccccc; /* Slightly darker border for the input */
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 16px;
 }
 
-#moodOptions button:hover {
-  background-color: #9c6e3b; /* slightly lighter gold */
+.mood-button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff; /* White text for all buttons */
 }
 
-#moodHistory {
-  margin-top: 20px;
-}
+/* Button color coding based on mood */
+.happy { background-color: #ffdd67; }
+.sad { background-color: #78c0e0; }
+.excited { background-color: #ffd86f; }
+.anxious { background-color: #fa8c8c; }
 
-#moodHistory h3 {
-  font-family: 'Arial', sans-serif;
-  color: #3e3e3c; /* dark brown */
-}
-
-#moodHistory p {
-  font-size: 0.9em;
+.mood-button:hover {
+    opacity: 0.85;
 }
