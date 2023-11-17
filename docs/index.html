@@ -7,22 +7,23 @@
 <style>
   body {
     font-family: 'Arial', sans-serif;
-    padding: 10px;
-    background-color: #f7f7f7; /* light grey background */
+    margin: 0;
+    padding: 20px;
+    background-color: #eaeaea; /* Soft background color */
   }
 
   #moodTracker {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #fff;
+    background: #ffffff; /* White background for the tracker */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for depth */
   }
 
   #moodDate {
-    border: 1px solid #ccc;
+    border: 2px solid #cccccc; /* Slightly darker border for the input */
     border-radius: 5px;
     padding: 5px 10px;
     font-size: 16px;
@@ -30,56 +31,86 @@
 
   .mood-button {
     border: none;
-    border-radius: 20px;
-    padding: 10px 15px;
+    border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
-    transition: all 0.3s ease;
+    transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
+    color: #fff; /* White text for all buttons */
+  }
+
+  /* Button color coding based on mood */
+  .happy { background-color: #ffdd67; }
+  .sad { background-color: #78c0e0; }
+  .excited { background-color: #ffd86f; }
+  .anxious { background-color: #fa8c8c; }
+
+  .mood-button.selected {
+    transform: scale(1.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
 
   .mood-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
-
-  .happy {
-    background-color: #ffeb3b;
-    color: #3c3c3b;
-  }
-
-  .sad {
-    background-color: #2196f3;
-    color: #fff;
-  }
-
-  .excited {
-    background-color: #ff9800;
-    color: #3c3c3b;
-  }
-
-  .anxious {
-    background-color: #f44336;
-    color: #fff;
-  }
-
 </style>
 </head>
 <body>
 
 <div id="moodTracker">
     <input type="date" id="moodDate" name="moodDate">
-    <button class="mood-button happy" onclick="recordMood('Happy')">😊 Happy</button>
-    <button class="mood-button sad" onclick="recordMood('Sad')">😔 Sad</button>
-    <button class="mood-button excited" onclick="recordMood('Excited')">😃 Excited</button>
-    <button class="mood-button anxious" onclick="recordMood('Anxious')">😰 Anxious</button>
+    <button class="mood-button happy" data-mood="Happy" onclick="recordMood('Happy')">😊 Happy</button>
+    <button class="mood-button sad" data-mood="Sad" onclick="recordMood('Sad')">😔 Sad</button>
+    <button class="mood-button excited" data-mood="Excited" onclick="recordMood('Excited')">😃 Excited</button>
+    <button class="mood-button anxious" data-mood="Anxious" onclick="recordMood('Anxious')">😰 Anxious</button>
 </div>
 
 <script>
-  // JavaScript functionality here
+document.addEventListener('DOMContentLoaded', function() {
+    const moodDate = document.getElementById('moodDate');
+    const moodButtons = document.querySelectorAll('.mood-button');
+
+    // Function to update the selected mood button
+    function updateSelectedMoodButton(selectedMood) {
+        moodButtons.forEach(button => {
+            if (button.dataset.mood === selectedMood) {
+                button.classList.add('selected'); // Highlight the selected mood button
+            } else {
+                button.classList.remove('selected'); // Remove highlight from other buttons
+            }
+        });
+    }
+
+    // Function to record the mood
+    window.recordMood = function(mood) {
+        let date = moodDate.value;
+        if (!date) {
+            alert("Please select a date.");
+            return;
+        }
+
+        // Store the mood using localStorage
+        localStorage.setItem(date, mood);
+
+        // Highlight the selected mood button
+        updateSelectedMoodButton(mood);
+    };
+
+    // Event listener to handle date changes
+    moodDate.addEventListener('change', function() {
+        const selectedDate = this.value;
+        const savedMood = localStorage.getItem(selectedDate);
+
+        // Update the selected mood button based on saved mood
+        updateSelectedMoodButton(savedMood);
+    });
+});
 </script>
 
 </body>
 </html>
+
